@@ -17,7 +17,8 @@ CREATE TABLE users (
 CREATE TABLE directories (
   id serial PRIMARY KEY,
   name varchar NOT NULL,
-  user_id integer REFERENCES users (id)
+  user_id integer REFERENCES users (id),
+  directory_id integer REFERENCES directories (id)
 );
 
 CREATE TABLE files (
@@ -36,20 +37,22 @@ INSERT INTO users (name, computer_id) VALUES
   ('Isabel', 2),
   ('Sherry', 2);
 
-INSERT INTO directories (name, user_id) VALUES
-  ('Documents', 1),
-  ('Documents', 2),
-  ('Desktop', 1),
-  ('Desktop', 2),
-  ('Home', 3);
+INSERT INTO directories (name, user_id, directory_id) VALUES
+  ('Documents', 1, null),
+  ('Documents', 2, null),
+  ('MY FOLDER', 2, 2),
+  ('Desktop', 1, null),
+  ('Desktop', 2, null),
+  ('Photos', 2, 4),
+  ('Home', 3, null);
 
 INSERT INTO files (name, extension, directory_id) VALUES
   ('Task List', 'txt', 1),
   ('avatar', 'jpg', 2),
   ('Intro to Philosophy Paper FINAL (2)', 'docx', 3),
   ('2017 Budget', 'xls', 4),
-  ('kitty', 'gif', 5),
+  ('kitty', 'gif', 6),
   ('n0t4v1ru5', 'exe', 4),
   ('notes', 'txt', 3),
   ('blues', 'mp4', 2),
-  ('2015-taxes', 'pdf', 3);
+  ('2015-taxes', 'pdf', 7);
